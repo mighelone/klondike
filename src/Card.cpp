@@ -10,13 +10,13 @@
 
 namespace klondike {
 
-Card::Card(Rank r, CardValue v): rank(r), value(v){}
-Card::Card(int r, int v): Card(static_cast<Rank>(r), static_cast<CardValue>(v)){}
+Card::Card(RankValue r, CardValue v): rank(r), value(v){}
+Card::Card(int r, int v): Card(static_cast<RankValue>(r), static_cast<CardValue>(v)){}
 Card::~Card() {}
 
 std::ostream& operator<< (std::ostream& stream, const Card & c)
 {
-    stream << Card::RANK_NAMES[c.value] << " of " << Card::RANK_NAMES[c.rank];
+    stream << Card::VALUE_NAMES[c.value-1] << " of " << Card::RANK_NAMES[c.rank];
     return stream;
 }
 

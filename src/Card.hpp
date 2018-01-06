@@ -31,19 +31,22 @@ public:
         Queen=9,
         King=10
      };
-    enum Rank {Clubs, Diamonds, Hearts, Spades};
+    enum RankValue {Clubs, Diamonds, Hearts, Spades};
 private:
-    Rank rank;
+    RankValue rank;
     CardValue value;
+    static const std::string RANK_NAMES[];
+    static const std::string VALUE_NAMES[];
 public:
-    Card(Rank r=Clubs, CardValue v=Ace);
+    Card(RankValue r=Clubs, CardValue v=Ace);
     Card(int r, int v);
     ~Card();
     friend std::ostream& operator<< (std::ostream& stream, const Card & c);
-    //static constexpr std::string RANK_NAMES[4] = {"Clubs", "Diamonds", "Hearts", "Spades"};
-    //static constexpr int RANK_NAMES[] = {1, 2, 3, 4};
-    static const std::string RANK_NAMES[];
-    static const std::string VALUE_NAMES[];
+    CardValue getValue() const {return value;}
+    RankValue getRank() const {return rank;}
+    //bool is_red() const;
+    //bool is_black() const;
+
 protected:
 
 };
