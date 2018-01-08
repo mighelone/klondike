@@ -22,13 +22,33 @@ TEST(CardTest, ctor)
     EXPECT_EQ(card.get_value(), value);
 }
 
-TEST(CardTest, ctorInt1)
+TEST(CardTest, ctor_all_int)
 {
 
     // create card with int
     Card card(0, 1);
     EXPECT_EQ(card.get_rank(), Card::Clubs);
     EXPECT_EQ(card.get_value(), Card::Ace);
+}
+
+TEST(CardTest, ctor_rank_int)
+{
+
+    // create card with int
+    //Card card(0, Card::Ace);
+
+    EXPECT_TRUE(Card(0, Card::Ace) == Card(Card::Clubs, Card::Ace));
+    //EXPECT_EQ(card.get_value(), Card::Ace);
+}
+
+TEST(CardTest, ctor_value_int)
+{
+
+    // create card with int
+    //Card card(0, Card::Ace);
+
+    EXPECT_TRUE(Card(Card::Clubs, 1) == Card(Card::Clubs, Card::Ace));
+    //EXPECT_EQ(card.get_value(), Card::Ace);
 }
 
 TEST(CardTest, ctorInt2)
@@ -84,7 +104,18 @@ TEST(CardTest, equal)
 {
     EXPECT_TRUE(Card::Ace == 1);
     EXPECT_TRUE(1 == Card::Ace);
+    EXPECT_TRUE(Card::Clubs == 0);
+    EXPECT_TRUE(0 == Card::Clubs);
+    EXPECT_TRUE(Card(Card::Clubs, Card::Two) == Card(0, 2));
 }
+
+// TEST(CardTest, operators)
+// {
+//     Card::CardValue value = Card::Ace;
+//     //++value;
+//     std::cout << Card::value_to_string(value) << std::endl;
+//     //EXPECT_TRUE(value == Card::Two);
+// }
 
 
 int main(int argc, char **argv)

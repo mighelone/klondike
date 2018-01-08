@@ -39,7 +39,9 @@ private:
     static const std::string VALUE_NAMES[];
 public:
     Card(RankValue r=Clubs, CardValue v=Ace);
-    Card(int r, int v);
+    Card(int r=0, int v=1);
+    Card(RankValue r=Clubs, int v=1);
+    Card(int r=0, CardValue v=Ace);
     ~Card();
     friend std::ostream& operator<< (std::ostream& stream, const Card & c);
     CardValue get_value() const {return value;}
@@ -56,12 +58,19 @@ public:
     bool is_red() const;
     bool is_black() const;
 
+    bool operator==(Card card);
+
 protected:
 
 };
 
+// equal operatore between enum and int
 bool operator==(Card::CardValue value1, int value2);
 bool operator==(int value1, Card::CardValue value2);
+bool operator==(Card::RankValue value1, int value2);
+bool operator==(int value1, Card::RankValue value2);
+
+//Card::CardValue operator++ (Card::CardValue);
 
 } // end namespace klondike
 

@@ -12,6 +12,8 @@ namespace klondike {
 
 Card::Card(RankValue r, CardValue v): rank(r), value(v){}
 Card::Card(int r, int v): Card(static_cast<RankValue>(r), static_cast<CardValue>(v)){}
+Card::Card(RankValue r, int v): Card(r, int_to_value(v)){};
+Card::Card(int r, CardValue v): Card(int_to_rank(r), v){};
 Card::~Card() {}
 
 std::ostream& operator<< (std::ostream& stream, const Card & c)
@@ -53,6 +55,11 @@ std::string Card::value_to_string(const Card::CardValue &value)
     return VALUE_NAMES[value-1];
 }
 
+bool Card::operator==(Card card)
+{
+    return rank == card.rank and value == card.value;
+}
+
 bool operator==(Card::CardValue value1, int value2)
 {
     return Card::value_to_int(value1) == value2;
@@ -62,5 +69,20 @@ bool operator==(int value1, Card::CardValue value2)
 {
     return value2 == value1;
 }
+bool operator==(Card::RankValue value1, int value2)
+{
+    return Card::rank_to_int(value1) == value2;
+}
 
+bool operator==(int value1, Card::RankValue value2)
+{
+    return value2 == value1;
+}
+
+// Card::CardValue operator++ (Card::CardValue value)
+// {
+//     int value_int = Card::value_to_int(value);
+//     //value_int++;
+//     return Card::int_to_value(value_int);
+// }
 } // end namespace klondike
