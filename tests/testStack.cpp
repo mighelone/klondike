@@ -10,6 +10,7 @@ using namespace klondike;
 
 const Card last_visible_card(Card::Spades, Card::Jack);
 const Card card_add(Card::Hearts, Card::Seven);
+const Card card_cannot_add(Card::Clubs, Card::Five);
 
 
 class StackTest: public ::testing::Test
@@ -48,16 +49,34 @@ TEST_F(StackTest, is_card_lower_one)
     //std::cout << "Last card:" << stack.last_visible() << " to int=" << Card::value_to_int(stack.last_visible().get_value()) << "\n";
     //std::cout << "Card to add:" << card_add <<  " to int=" << Card::value_to_int(card_add.get_value()) << "\n";
     EXPECT_TRUE(stack.is_card_lower_one(card_add));
+    EXPECT_FALSE(stack.is_card_lower_one(card_cannot_add));
 }
 
 TEST_F(StackTest, is_color_different)
 {
     EXPECT_TRUE(stack.is_color_different(card_add));
+    EXPECT_FALSE(stack.is_color_different(card_cannot_add));
 }
 
 TEST_F(StackTest, can_add_card)
 {
     EXPECT_TRUE(stack.can_add_card(card_add));
+    EXPECT_FALSE(stack.can_add_card(card_cannot_add));
+}
+
+TEST_F(StackTest, add_card)
+{
+    //stack.push_visible(Card(Card::Spades, Card::Ace));
+    stack.push_visible(card_add);
+    EXPECT_TRUE(stack.last_visible()==card_add);
+
+    ASSERT_THROW(stack.push_visible(card_cannot_add), StackPushVisibleException);
+}
+
+TEST_F(StackTest, push_hidden)
+{
+    // test if push_hidden throw an exception if the visible is not empty
+    ASSERT_THROW(stack.push_hidden(card_cannot_add), StackPushHiddenException);
 }
 
 int main(int argc, char **argv)

@@ -10,8 +10,12 @@
 
 namespace klondike {
 
-    void Stack::push_hidden(Card card)
+    void Stack::push_hidden(Card card) throw(StackPushHiddenException)
     {
+        if (!visible.empty())
+        {
+            throw StackPushHiddenException();
+        }
         hidden.push_back(card);
     }
 
@@ -35,8 +39,12 @@ namespace klondike {
         return is_card_lower_one(card) and is_color_different(card);
     }
 
-    void Stack::add_card_visible(Card card)
+    void Stack::push_visible(Card card) throw(StackPushVisibleException)
     {
+        if (!can_add_card(card))
+        {
+            throw StackPushVisibleException();
+        }
         visible.push_back(card);
     }
 
