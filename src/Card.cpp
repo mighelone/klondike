@@ -33,4 +33,14 @@ const std::string Card::VALUE_NAMES[] = {
     "Queen",
     "King"};
 
+bool Card::is_red() const
+{
+    return rank == RankValue::Diamonds or rank == RankValue::Hearts;
+}
+
+bool Card::is_black() const
+{
+    return !is_red();
+}
+
 } // end namespace klondike

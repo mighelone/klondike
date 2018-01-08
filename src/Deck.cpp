@@ -57,4 +57,9 @@ namespace klondike {
         return (int) cards.size();
     }
 
+    bool Deck::empty() const
+    {
+        return cards.empty();
+    }
+
 }

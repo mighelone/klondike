@@ -41,6 +41,8 @@ public:
     Card pop();
     void push(const Card & card);
     int size() const;
+
+    bool empty() const;
     //Deck& operator=(const Deck& other) = default;
     //Deck& operator=(Deck&& other) = default;
 };

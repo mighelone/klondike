@@ -42,10 +42,11 @@ public:
     Card(int r, int v);
     ~Card();
     friend std::ostream& operator<< (std::ostream& stream, const Card & c);
-    CardValue getValue() const {return value;}
-    RankValue getRank() const {return rank;}
-    //bool is_red() const;
-    //bool is_black() const;
+    CardValue get_value() const {return value;}
+    RankValue get_rank() const {return rank;}
+
+    bool is_red() const;
+    bool is_black() const;
 
 protected:
 
