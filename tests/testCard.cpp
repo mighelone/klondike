@@ -102,6 +102,8 @@ TEST(CardTest, int_conversion)
 
 TEST(CardTest, equal)
 {
+    //std::cout << "Print Ace: " << Card::Ace << "\n";
+    //std::cout << "Print Clubs: " << Card::Clubs << "\n";
     EXPECT_TRUE(Card::Ace == 1);
     EXPECT_TRUE(1 == Card::Ace);
     EXPECT_TRUE(Card::Clubs == 0);
