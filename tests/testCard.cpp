@@ -4,7 +4,6 @@
 
 #include <iostream>
 
-
 // google tests
 #include "gtest/gtest.h"
 

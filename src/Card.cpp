@@ -55,7 +55,7 @@ namespace klondike {
         return VALUE_NAMES[value-1];
     }
 
-    bool Card::operator==(Card card)
+    bool Card::operator==(Card card) const
     {
         return rank == card.rank and value == card.value;
     }

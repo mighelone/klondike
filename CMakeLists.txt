@@ -21,12 +21,17 @@ file(GLOB project_headers src/*.h src/*.hpp)
 
 add_library(${ProjectId} SHARED ${project_sources})
 
-#add_executable(${ProjectId} ${project_sources} ${project_headers})
 
+# testCard
 add_executable(testCard.x tests/testCard.cpp)
 target_link_libraries(testCard.x ${ProjectId} gtest)
 
-#target_include_directories(testRun.x )
+# testStack
+add_executable(testStack.x tests/testStack.cpp)
+target_link_libraries(testStack.x ${ProjectId} gtest)
+
+
+
 
 add_executable(testRun.x tests/test.cpp)
 target_link_libraries(testRun.x ${ProjectId})

@@ -58,7 +58,7 @@ namespace klondike {
         bool is_red() const;
         bool is_black() const;
 
-        bool operator==(Card card);
+        bool operator==(Card card) const;
 
     protected:
 

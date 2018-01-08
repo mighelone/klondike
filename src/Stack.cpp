@@ -32,12 +32,7 @@ namespace klondike {
 
     bool Stack::can_add_card(Card card)
     {
-        int value_card=static_cast<Card::CardValue>(card.get_value());
-        int stack_card=static_cast<Card::CardValue>(last_value());
-        bool value_is_lower_one = value_card == (stack_card-1);
-        bool color_is_opposite = card.is_red() xor visible.back().is_red();
-
-        return value_is_lower_one and color_is_opposite;
+        return is_card_lower_one(card) and is_color_different(card);
     }
 
     void Stack::add_card_visible(Card card)
@@ -61,6 +56,18 @@ namespace klondike {
         return visible.back();
     }
 
+    bool Stack::is_card_lower_one(const Card &card) const
+    {
+        int value_to_add=Card::value_to_int(card.get_value());
+        int last_value=Card::value_to_int(visible.back().get_value());
+        //std::cout << value_to_add << ": " << last_value << std::endl;
+        return value_to_add == (last_value-1);
+    }
+
+    bool Stack::is_color_different(const Card &card) const
+    {
+        return card.is_red() xor visible.back().is_red();
+    }
 
 
 } // edn namespace klondike
