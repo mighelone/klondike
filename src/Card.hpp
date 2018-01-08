@@ -44,6 +44,14 @@ public:
     friend std::ostream& operator<< (std::ostream& stream, const Card & c);
     CardValue get_value() const {return value;}
     RankValue get_rank() const {return rank;}
+    static std::string rank_to_string(const RankValue & rank);
+    static std::string value_to_string(const CardValue & value);
+    static int rank_to_int(const RankValue & rank){
+        int i = static_cast<RankValue>(rank);
+        return i;}
+    static int value_to_int(const CardValue & value){return static_cast<CardValue>(value);}
+    static RankValue int_to_rank(int rank){return static_cast<RankValue>(rank);}
+    static CardValue int_to_value(int value){return static_cast<CardValue>(value);}
 
     bool is_red() const;
     bool is_black() const;
@@ -51,6 +59,9 @@ public:
 protected:
 
 };
+
+bool operator==(Card::CardValue value1, int value2);
+bool operator==(int value1, Card::CardValue value2);
 
 } // end namespace klondike
 

@@ -43,4 +43,24 @@ bool Card::is_black() const
     return !is_red();
 }
 
+std::string Card::rank_to_string(const Card::RankValue &rank)
+{
+    return RANK_NAMES[rank];
+}
+
+std::string Card::value_to_string(const Card::CardValue &value)
+{
+    return VALUE_NAMES[value-1];
+}
+
+bool operator==(Card::CardValue value1, int value2)
+{
+    return Card::value_to_int(value1) == value2;
+}
+
+bool operator==(int value1, Card::CardValue value2)
+{
+    return value2 == value1;
+}
+
 } // end namespace klondike
