@@ -30,6 +30,10 @@ target_link_libraries(testCard.x ${ProjectId} gtest)
 add_executable(testStack.x tests/testStack.cpp)
 target_link_libraries(testStack.x ${ProjectId} gtest)
 
+# testFoundations
+add_executable(testFoundation.x tests/testFoundation.cpp)
+target_link_libraries(testFoundation.x ${ProjectId} gtest)
+
 
 
 

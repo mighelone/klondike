@@ -14,20 +14,30 @@ namespace klondike{
         return cards.empty();
     }
 
-    bool Foundation::can_add_card(Card card) const
+    bool Foundation::can_add_card(const Card &card) const
     {
         if (empty())
         {
             if (card.get_value() == Card::Ace)
                 return true;
+            else
+                return false;
         }
         const Card last_card = cards.top();
-        bool rank_is_equal = last_card.get_rank() == card.get_rank();
-        bool is_next_value = static_cast<Card::CardValue>(last_card.get_value()) == (static_cast<Card::CardValue>(card.get_value()) + 1);
-        return rank_is_equal and is_next_value;
+        if (rank_is_equal(card))
+        {
+            return Card::value_to_int(last_card.get_value()) == Card::value_to_int(card.get_value())-1;
+        }
+        else
+            return false;
     }
 
-    Card Foundation::last() const
+    bool Foundation::rank_is_equal(const Card &card) const
+    {
+        return cards.top().get_rank() == card.get_rank();
+    }
+
+    Card Foundation::top() const
     {
         return cards.top();
     }

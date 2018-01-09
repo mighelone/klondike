@@ -19,8 +19,10 @@ namespace klondike{
         std::stack<Card> cards;
     public:
         bool empty() const;
-        bool can_add_card(Card card) const;
-        Card last() const;
+        bool can_add_card(const Card &card) const;
+        bool rank_is_equal(const Card &card) const;
+        //bool is_next_value(const Card &card) const;
+        Card top() const;
         void push_front(const Card &card);
         //Foundations();
         //~Foundations();
