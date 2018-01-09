@@ -66,6 +66,8 @@ namespace klondike {
         int hidden_size() const {return hidden.size();}
         std::vector<Card> get_hidden() const {return hidden;}
         std::vector<Card> get_visible() const {return visible;}
+        bool empty_visible() const {return visible.empty();}
+        bool empty_hidden() const {return hidden.empty();}
 
     protected:
     };

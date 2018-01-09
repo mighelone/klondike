@@ -37,6 +37,7 @@ private:
     void print_deque() const;
 
     FRIEND_TEST(GameTest, move);
+    FRIEND_TEST(GameTest, move_to_pile);
 public:
     Game();
     ~Game();

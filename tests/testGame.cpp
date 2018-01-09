@@ -1,5 +1,6 @@
 #include "Game.hpp"
 #include "Stack.hpp"
+#include <map>
 
 // google tests
 #include "gtest/gtest.h"
@@ -41,6 +42,23 @@ namespace klondike{
         EXPECT_EQ(game.stacks[0].visible_size(), 0);
         game.print();
     }
+
+    TEST_F(GameTest, move_to_pile)
+    {
+        Stack & st0 = game.stacks[0];
+        st0.pop_visible_cards();
+        Card ace = Card(Card::Hearts, Card::Ace);
+        st0.push_visible(ace);
+        game.move(0);
+        EXPECT_TRUE(ace == game.foundations[Card::Hearts].top());
+        EXPECT_TRUE(st0.empty_visible());
+        Card two = Card(Card::Hearts, Card::Two);
+        st0.push_visible(two);
+        game.move(0);
+        EXPECT_TRUE(two == game.foundations[Card::Hearts].top());
+        EXPECT_TRUE(st0.empty_visible());
+    }
+
 }//namespace klondike
 
 int main(int argc, char* argv[])

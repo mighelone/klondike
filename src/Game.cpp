@@ -23,6 +23,11 @@ namespace klondike
                 stacks[i].push_hidden(deck.pop());
             }
             stacks[i].turn_card();
+            for (int i=0; i<4; i++)
+            {
+                //std::cout << "Add foundation of " << Card::rank_to_string(Card::int_to_rank(i)) << "\n";
+                foundations.insert(std::make_pair(Card::int_to_rank(i), Foundation()));
+            }
         }
     }
     Game::~Game() {}
@@ -98,10 +103,38 @@ namespace klondike
         {
             //std::vector<Card> popped_cards = from_stack.pop_visible_cards(n);
             to_stack.push_visible(from_stack.pop_visible_cards(n));
-        }
-        //if (from_stack.visible_size()==0 and from_stack.hidden_size()!=0)
-        if (from_stack.should_turn_card())
-            from_stack.turn_card();
+            //if (from_stack.visible_size()==0 and from_stack.hidden_size()!=0)
+            if (from_stack.should_turn_card())
+                from_stack.turn_card();
 
+        }
+        else
+            std::cerr << "Cannot move from stack " << from << " to " << to << "\n";
+    }
+
+    void Game::move(int from)
+    {
+        Stack &from_stack = stacks[from];
+        const Card & last_card = from_stack.last_visible();
+        Card::RankValue rank = last_card.get_rank();
+        //
+
+        if (foundations.find(rank) != foundations.end())
+        {
+            Foundation &f = foundations[last_card.get_rank()];
+            if (f.can_add_card(last_card))
+            {
+                //Card popped =
+                f.push_front(from_stack.pop_visible_cards(1)[0]);
+            }
+            else {
+                std::cerr << "Can add " << last_card << "to its foundation: " << f.top() << "\n";
+            }
+        }
+        else
+        {
+            // throw an error
+            std::cout << "Here !" << "\n";
+        }
     }
 }
