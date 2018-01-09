@@ -18,6 +18,12 @@
 #include "Stack.hpp"
 #include "Foundation.hpp"
 
+// for gtest
+#define GTEST
+#ifdef GTEST
+#include "gtest/gtest_prod.h"
+#endif
+
 namespace klondike{
 
 class Game {
@@ -28,10 +34,15 @@ private:
     std::map<Card::RankValue, Foundation> foundations;
 
     void print_stacks() const;
+    void print_deque() const;
+
+    FRIEND_TEST(GameTest, move);
 public:
     Game();
     ~Game();
     void print() const;
+    void move(int from_stack, int n, int to_stack);
+    void move(int from_stack);
     //void move_to_pile();
 
 protected:

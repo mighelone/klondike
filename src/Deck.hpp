@@ -42,6 +42,7 @@ public:
     int size() const;
 
     bool empty() const;
+    Card back() const {return cards.back();}
     //Deck& operator=(const Deck& other) = default;
     //Deck& operator=(Deck&& other) = default;
 };

@@ -41,7 +41,10 @@ namespace klondike {
 
     bool Stack::can_add_card(Card card)
     {
-        return is_card_lower_one(card) and is_color_different(card);
+        if (visible.empty())
+            return true;
+        else
+            return is_card_lower_one(card) and is_color_different(card);
     }
 
     void Stack::push_visible(Card card) throw(StackPushVisibleException)
