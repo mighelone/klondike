@@ -36,7 +36,6 @@ namespace klondike {
 
     TEST_F(FoundationTest, can_add_card)
     {
-        //EXPECT_TRUE(found;
         EXPECT_TRUE(found.can_add_card(two));
         EXPECT_FALSE(found.can_add_card(Card(rank, Card::Three)));
     }

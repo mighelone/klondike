@@ -47,6 +47,8 @@ namespace klondike {
         friend std::ostream& operator<< (std::ostream& stream, const Card & c);
         CardValue get_value() const {return value;}
         RankValue get_rank() const {return rank;}
+        int get_value_int() const {return value_to_int(value);}
+        int get_rank_int() const {return rank_to_int(rank);}
         static std::string rank_to_string(const RankValue & rank);
         static std::string value_to_string(const CardValue & value);
         static int rank_to_int(const RankValue & rank){

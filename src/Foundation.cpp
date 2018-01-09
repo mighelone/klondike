@@ -26,7 +26,7 @@ namespace klondike{
         const Card last_card = cards.top();
         if (rank_is_equal(card))
         {
-            return Card::value_to_int(last_card.get_value()) == Card::value_to_int(card.get_value())-1;
+            return last_card.get_value_int() == card.get_value_int() - 1;
         }
         else
             return false;

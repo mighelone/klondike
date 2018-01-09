@@ -110,6 +110,20 @@ TEST(CardTest, equal)
     EXPECT_TRUE(Card(Card::Clubs, Card::Two) == Card(0, 2));
 }
 
+TEST(CardTest, get_rank_int)
+{
+    Card card(0, 1);
+    EXPECT_EQ(card.get_rank_int(), 0);
+}
+
+TEST(CardTest, get_value_int)
+{
+    Card card(0, 1);
+    //std::cout << card << "\n";
+    EXPECT_EQ(card.get_value_int(), 1);
+}
+
+
 // TEST(CardTest, operators)
 // {
 //     Card::CardValue value = Card::Ace;
