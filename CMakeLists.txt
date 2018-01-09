@@ -34,6 +34,10 @@ target_link_libraries(testStack.x ${ProjectId} gtest)
 add_executable(testFoundation.x tests/testFoundation.cpp)
 target_link_libraries(testFoundation.x ${ProjectId} gtest)
 
+#testGame
+add_executable(testGame.x tests/testGame.cpp)
+target_link_libraries(testGame.x ${ProjectId} gtest)
+
 
 
 

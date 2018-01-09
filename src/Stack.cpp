@@ -28,9 +28,14 @@ namespace klondike {
     {
         if (should_turn_card())
         {
+            //std::cout << "Turn card" << "\n";
             Card c = hidden.back();
             hidden.pop_back();
             visible.push_back(c);
+        }
+        else
+        {
+            throw std::exception();
         }
     }
 

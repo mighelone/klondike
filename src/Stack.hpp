@@ -62,6 +62,10 @@ namespace klondike {
         bool is_color_different(const Card &card) const;
         std::vector<Card> pop_visible_cards();
         std::vector<Card> pop_visible_cards(int n);
+        int visible_size() const {return visible.size();}
+        int hidden_size() const {return hidden.size();}
+        std::vector<Card> get_hidden() const {return hidden;}
+        std::vector<Card> get_visible() const {return visible;}
 
     protected:
     };

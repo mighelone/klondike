@@ -30,11 +30,10 @@ class Deck
 {
 private:
     std::deque<Card> cards;
-    void init_cards();
-    void shuffle_cards();
 public:
     Deck();
-
+    void init_cards();
+    void shuffle_cards();
     //~Deck();
     Deck(const Deck& other) = default;
     Deck(Deck&& other) = default;
