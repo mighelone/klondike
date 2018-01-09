@@ -14,6 +14,7 @@ namespace klondike {
     Card::Card(int r, int v): Card(static_cast<RankValue>(r), static_cast<CardValue>(v)){}
     Card::Card(RankValue r, int v): Card(r, int_to_value(v)){};
     Card::Card(int r, CardValue v): Card(int_to_rank(r), v){};
+    //Card::Card(): Card(Clubs, Ace) {};
     Card::~Card() {}
 
     std::ostream& operator<< (std::ostream& stream, const Card & c)

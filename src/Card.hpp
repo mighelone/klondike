@@ -38,10 +38,11 @@ namespace klondike {
         static const std::string RANK_NAMES[];
         static const std::string VALUE_NAMES[];
     public:
+        //Card();
         Card(RankValue r=Clubs, CardValue v=Ace);
-        Card(int r=0, int v=1);
-        Card(RankValue r=Clubs, int v=1);
-        Card(int r=0, CardValue v=Ace);
+        Card(int r, int v);
+        Card(RankValue r, int v);
+        Card(int r, CardValue v);
         ~Card();
         friend std::ostream& operator<< (std::ostream& stream, const Card & c);
         CardValue get_value() const {return value;}

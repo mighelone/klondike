@@ -48,6 +48,14 @@ namespace klondike {
         visible.push_back(card);
     }
 
+    void Stack::push_visible(const std::vector<Card> &cards) throw(StackPushVisibleException)
+    {
+        // push the cards in the given order
+        for (auto card: cards)
+        {
+            push_visible(card);
+        }
+    }
 
     Card::CardValue Stack::last_value() const
     {
@@ -76,6 +84,35 @@ namespace klondike {
     {
         return card.is_red() xor visible.back().is_red();
     }
+
+    std::vector<Card> Stack::pop_visible_cards()
+    {
+        std::vector<Card> popped;
+        for (auto card: visible)
+        {
+            popped.push_back(card);
+        }
+        visible.clear(); // clear visible
+        return popped;
+    }
+
+    // pop the last n cards
+    std::vector<Card> Stack::pop_visible_cards(int n)
+    {
+        std::vector<Card> popped(n);
+        if (n > visible.size())
+            throw std::exception();
+        int size_n = visible.size() - n;
+        for (int i=0; i < n; i++)
+        {
+            popped[i] = visible[size_n+i];
+            //std::cout << "Pop i=" << size_n+i << " "<< visible[size_n+i]  << "\n";
+        }
+        // delete
+        visible.erase(visible.begin()+size_n, visible.end());
+        return popped;
+    }
+
 
 
 } // edn namespace klondike
