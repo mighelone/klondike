@@ -45,6 +45,7 @@ namespace klondike{
         FRIEND_TEST(GameTest, move_to_foundation);
         FRIEND_TEST(GameTest, move_from_discard);
         FRIEND_TEST(GameTest, move_from_discard_f);
+        FRIEND_TEST(GameTest, move_to_discard);
         #endif
     public:
         Game();
@@ -54,7 +55,9 @@ namespace klondike{
         void move(int from_stack, int n, int to_stack);
         // move card from stack to its foundation
         void move(int from_stack);
+        // move card from discard deck to stack n
         void move_from_discard(int n);
+        // move card from discard to its foundation
         void move_from_discard();
 
         void print_prompt() const;

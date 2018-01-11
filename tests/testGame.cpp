@@ -109,7 +109,26 @@ namespace klondike{
 
     TEST_F(GameTest, move_from_discard_f)
     {
+        //std::cout << game.discard.back() << "\n";
+        Card::RankValue rank = Card::Hearts;
+        Card ace = Card(rank, Card::Ace);
+        game.discard.push(Card(rank, Card::King));
+        game.discard.push(ace);
+        game.move_from_discard();
+        EXPECT_TRUE(game.foundations[rank].top() == ace);
+        EXPECT_FALSE(game.discard.back() == ace);
+    }
 
+    TEST_F(GameTest, move_to_discard)
+    {
+        const int deck_size = game.deck.size();
+        const int discard_size = game.discard.size();
+        Card card = game.deck.back();
+        game.move_to_discard();
+        EXPECT_TRUE(card == game.discard.back());
+        EXPECT_FALSE(card == game.deck.back());
+        EXPECT_EQ(deck_size-1, game.deck.size());
+        EXPECT_EQ(discard_size+1, game.discard.size());
     }
 
 }//namespace klondike
