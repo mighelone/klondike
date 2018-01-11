@@ -41,7 +41,8 @@ namespace klondike{
 
         #ifdef GTEST
         FRIEND_TEST(GameTest, move);
-        FRIEND_TEST(GameTest, move_to_pile);
+        FRIEND_TEST(GameTest, move_king);
+        FRIEND_TEST(GameTest, move_to_foundation);
         FRIEND_TEST(GameTest, move_from_discard);
         FRIEND_TEST(GameTest, move_from_discard_f);
         #endif
@@ -51,6 +52,7 @@ namespace klondike{
         void print() const;
         // move n cards from_stack to_stack
         void move(int from_stack, int n, int to_stack);
+        // move card from stack to its foundation
         void move(int from_stack);
         void move_from_discard(int n);
         void move_from_discard();

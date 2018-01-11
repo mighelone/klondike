@@ -52,17 +52,41 @@ namespace klondike{
         EXPECT_EQ(game.stacks[0].visible_size(), 1);
     }
 
-    TEST_F(GameTest, move_to_pile)
+    TEST_F(GameTest, move_king)
     {
+        // test if a king can be moved to an empty stack
+        Stack & st0 = game.stacks[0];
+        Stack & st1 = game.stacks[1];
+        st0.pop_visible_cards();
+        st1.pop_visible_cards();
+        Card king = Card(get_red(), Card::King);
+        st0.push_visible(king);
+        game.move(0, 1, 1);
+        EXPECT_EQ(game.stacks[0].visible_size(), 0);
+        EXPECT_EQ(game.stacks[1].visible_size(), 1);
+        EXPECT_TRUE(game.stacks[1].last_visible() == king);
+    }
+
+    TEST_F(GameTest, move_to_foundation)
+    {
+        // test if a card can be moved from a stack to its foundation
         Stack & st0 = game.stacks[0];
         st0.pop_visible_cards();
+
         Card ace = Card(Card::Hearts, Card::Ace);
-        st0.push_visible(ace);
+        st0.push_hidden(ace);
+        st0.turn_card();
+
         game.move(0);
-        EXPECT_TRUE(ace == game.foundations[Card::Hearts].top());
+        //std::cout << "Moved" << "\n";
+        EXPECT_TRUE(ace == game.foundations[ace.get_rank()].top());
         EXPECT_TRUE(st0.empty_visible());
+
+
+        //st0.push_hidden()
         Card two = Card(Card::Hearts, Card::Two);
-        st0.push_visible(two);
+        st0.push_hidden(two);
+        st0.turn_card();
         game.move(0);
         EXPECT_TRUE(two == game.foundations[Card::Hearts].top());
         EXPECT_TRUE(st0.empty_visible());
@@ -74,11 +98,13 @@ namespace klondike{
         st0.pop_visible_cards();
         Card seven(Card(get_red(), Card::Seven));
         Card six(Card(get_black(), Card::Six));
-        st0.push_visible(seven);
+        st0.push_hidden(seven);
+        st0.turn_card();
         game.discard.push(six);
         //
         game.move_from_discard(0);
         EXPECT_TRUE(six==st0.last_visible());
+        EXPECT_FALSE(six==game.discard.back());
     }
 
     TEST_F(GameTest, move_from_discard_f)
