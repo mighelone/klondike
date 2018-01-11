@@ -3,9 +3,9 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 # extra path
-include_directories ("/Users/vascella/.local/include")
+#include_directories ("/Users/vascella/.local/include")
 include_directories("./src")
-link_directories ("/Users/vascella/.local/lib")
+#link_directories ("/Users/vascella/.local/lib")
 
 set (CMAKE_CXX_STANDARD 11)
 cmake_minimum_required(VERSION 3.0)
@@ -37,6 +37,9 @@ target_link_libraries(testFoundation.x ${ProjectId} gtest)
 #testGame
 add_executable(testGame.x tests/testGame.cpp)
 target_link_libraries(testGame.x ${ProjectId} gtest)
+
+add_executable(klondike.x klondike.cpp)
+target_link_libraries(klondike.x ${ProjectId})
 
 
 

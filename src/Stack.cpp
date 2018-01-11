@@ -42,7 +42,8 @@ namespace klondike {
     bool Stack::can_add_card(Card card)
     {
         if (visible.empty())
-            return true;
+            //return true;
+            return card.get_value() == Card::King;
         else
             return is_card_lower_one(card) and is_color_different(card);
     }

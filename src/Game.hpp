@@ -26,29 +26,43 @@
 
 namespace klondike{
 
-class Game {
-private:
-    std::vector<Stack> stacks;
-    Deck discard;
-    Deck deck;
-    std::map<Card::RankValue, Foundation> foundations;
+    const unsigned int N_STACKS = 7;
 
-    void print_stacks() const;
-    void print_deque() const;
+    class Game {
+    private:
+        std::vector<Stack> stacks;
+        Deck discard;
+        Deck deck;
+        std::map<Card::RankValue, Foundation> foundations;
 
-    FRIEND_TEST(GameTest, move);
-    FRIEND_TEST(GameTest, move_to_pile);
-public:
-    Game();
-    ~Game();
-    void print() const;
-    void move(int from_stack, int n, int to_stack);
-    void move(int from_stack);
-    //void move_to_pile();
+        void print_stacks() const;
+        void print_deque() const;
+        void print_foundations() const;
 
-protected:
+        #ifdef GTEST
+        FRIEND_TEST(GameTest, move);
+        FRIEND_TEST(GameTest, move_to_pile);
+        FRIEND_TEST(GameTest, move_from_discard);
+        FRIEND_TEST(GameTest, move_from_discard_f);
+        #endif
+    public:
+        Game();
+        ~Game();
+        void print() const;
+        // move n cards from_stack to_stack
+        void move(int from_stack, int n, int to_stack);
+        void move(int from_stack);
+        void move_from_discard(int n);
+        void move_from_discard();
 
-};
+        void print_prompt() const;
+        void prompt();
+        void move_to_discard();
+        //void move_to_pile();
+
+    protected:
+
+    };
 
 }
 #endif /* Game_hpp */

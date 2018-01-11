@@ -28,7 +28,7 @@ namespace klondike {
         }
         for (int rank=0; rank<4; rank++)
         {
-            for (int value=1; value<=10; value++)
+            for (int value=1; value<=13; value++)
             {
                 cards.push_back(Card(rank, value));
             }
@@ -38,6 +38,7 @@ namespace klondike {
     // shuffle the cards
     void Deck::shuffle_cards()
     {
+        std::srand(time(0));
         std::random_shuffle (cards.begin(), cards.end());
     }
 
@@ -49,7 +50,7 @@ namespace klondike {
     }
 
     void Deck::push(const Card & card) {
-        cards.push_front(card);
+        cards.push_back(card);
     }
 
     int Deck::size() const

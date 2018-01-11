@@ -19,12 +19,21 @@ namespace klondike {
 
     std::ostream& operator<< (std::ostream& stream, const Card & c)
     {
+        if (c.is_red())
+            stream << RED_;
+        else
+            stream << BLUE_;
         stream << Card::VALUE_NAMES[c.value-1] << Card::RANK_NAMES[c.rank];
+        if (c.is_red())
+            stream << _RED;
+        else
+            stream << _BLUE;
         return stream;
     }
 
     //const std::string Card::RANK_NAMES[] = {"Clubs", "Diamonds", "Hearts", "Spades"};
-    const std::string Card::RANK_NAMES[] = {"C", "D", "H", "S"};
+    //const std::string Card::RANK_NAMES[] = {"C", "D", "H", "S"};
+    const std::string Card::RANK_NAMES[] = {"\u2663", "\u2666", "\u2665", "\u2660"};
     const std::string Card::VALUE_NAMES[] = {
         // "Ace",
         // "Two",

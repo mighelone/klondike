@@ -121,6 +121,10 @@ TEST(CardTest, get_value_int)
     Card card(0, 1);
     //std::cout << card << "\n";
     EXPECT_EQ(card.get_value_int(), 1);
+
+    std::cout << Card(Card::Spades, Card::King) << "\n";
+    std::cout << Card(Card::Hearts, Card::Queen) << "\n";
+    std::cout << Card(Card::Clubs, Card::Jack) << "\n";
 }
 
 

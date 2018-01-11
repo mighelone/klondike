@@ -15,8 +15,13 @@
 #include <map>
 
 
-namespace klondike {
 
+
+namespace klondike {
+    const std::string RED_="\033[1;31m";
+    const std::string _RED="\033[0m";
+    const std::string BLUE_="\033[1;34m";
+    const std::string _BLUE="\033[0m";
     class Card {
     public:
         enum CardValue {
